@@ -1,6 +1,6 @@
 import os
 
-TOKEN = "7784061554:AAElO8fFvwPnJ9MPHXznfu2Qf8sokSjyqiQ"  # تأكد من صحة التوكن
+TOKEN = "YOUR_TELEGRAM_BOT_TOKEN"  # تأكد من صحة التوكن
 DB_PATH = "data/database.db"
 BOOKS_FOLDER = "data/books/"
 PAGES_FOLDER = "data/pages/"

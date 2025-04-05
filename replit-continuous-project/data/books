@@ -1,0 +1,5 @@
+The directory `data/books` is intended to be a folder that will contain the PDF books for processing. Since this is a directory and not a file, it does not require any specific contents. You can create the directory as is.
+
+Here is the content for the directory:
+
+# This directory is intentionally left blank.

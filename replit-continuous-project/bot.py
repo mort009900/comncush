@@ -1,13 +1,13 @@
-import os
-import sqlite3
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters, ApplicationBuilder
 from fuzzywuzzy import fuzz
 from utils.text_to_image import extract_text_from_image
-from config import TOKEN, DB_PATH, PROXY_URL  # استيراد الإعدادات
+from config import TOKEN, DB_PATH, PROXY_URL
 from keep_alive import keep_alive
+import os
+import sqlite3
 
-PAGES_FOLDER = "data/pages"  # إضافة مسار المجلد الرئيسي للصفحات
+PAGES_FOLDER = "data/pages"
 PAGES_SUBFOLDERS = [os.path.join(PAGES_FOLDER, f"FOLDER{i}") for i in range(1, 11)]
 
 async def start(update: Update, context):
@@ -102,7 +102,6 @@ async def navigate_pages(update: Update, context):
             image_path = result[0]
             image_found = False
 
-            # البحث عن الصورة في المجلدات الفرعية
             for subfolder in PAGES_SUBFOLDERS:
                 full_image_path = os.path.join(subfolder, os.path.basename(image_path))
                 if os.path.exists(full_image_path):
@@ -124,7 +123,6 @@ async def navigate_pages(update: Update, context):
             else:
                 await query.message.reply_text("❌ تعذر العثور على الصورة المطلوبة في المجلدات!")
         else:
-            # إذا لم يتم العثور على الصفحة المطلوبة
             if action == "next":
                 await query.message.reply_text("❌ لا توجد صفحات تالية.")
             else:
@@ -132,9 +130,8 @@ async def navigate_pages(update: Update, context):
     except ValueError:
         await query.message.reply_text("❌ حدث خطأ في معالجة الطلب. الرجاء المحاولة مرة أخرى.")
 
-
 def main():
-    keep_alive()  # Start the web server
+    keep_alive()
     app = ApplicationBuilder().token(TOKEN).proxy_url(PROXY_URL).build() if PROXY_URL else ApplicationBuilder().token(TOKEN).build()
     
     app.add_handler(CommandHandler("start", start))
@@ -142,7 +139,7 @@ def main():
     app.add_handler(MessageHandler(filters.PHOTO, handle_photo))
     app.add_handler(CallbackQueryHandler(navigate_pages))
 
-    app.run_polling(timeout=120, read_timeout=120)  # زيادة المهلة الزمنية
+    app.run_polling(timeout=120, read_timeout=120)
 
 if __name__ == "__main__":
     main()

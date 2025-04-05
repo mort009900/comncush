@@ -1,0 +1,5 @@
+The directory `data/pages` is intended to be a folder for storing images extracted from PDF pages. Since it is a directory and not a file, it does not contain any specific contents. 
+
+You can create the directory structure as follows:
+
+data/pages  # This directory is intentionally left blank.

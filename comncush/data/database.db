@@ -1,0 +1,7 @@
+The database file `database.db` is an SQLite database file and does not contain any content in a human-readable format. It is created and managed by the SQLite library, and its structure is defined by the tables and data you insert into it through your application.
+
+Since the file is intended to be an SQLite database, it should be left empty initially, as it will be populated by your application when it runs and processes the PDF books.
+
+Here is the content for the `database.db` file:
+
+# This file is intentionally left blank.
